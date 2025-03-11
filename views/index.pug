@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title #{title}
+    link(rel="stylesheet" href="/reset.css")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous")
+    link(rel="stylesheet" href="/styles.css")
+  body
+    .container
+      h1 Thuật Toán Mã Hóa Des
+      .form-container
+        form(action="/" method="POST")
+            input(type="text", name="M", placeholder="Nhập thông điệp M(Thập lục phân)", value=output ? output.M_data : "", required)
+            input(type="text", name="K", placeholder="Nhập khóa K(Thập lục phân)",value=output ? output.K_data : "", required)
+            button(type="submit") Mã hóa
+     
+      if output
+        h2 Output
+        .result 
+          if output.error 
+            p Dử liệu nhập vào không hợp lệ!!!
+          else
+            p Thông điệp M: #{output.M_origin} 
+            p khóa K: #{output.K_origin}
+            p Kết quả: #{output.result} 
+            p chi tiết
+            ul.result-detail-list
+              li Thông điệp M(nhị phân): #{output.M}
+              li khóa K(nhị phân): #{output.K}
+              li K+: #{output.K_plus}
+              li C0: #{output.C0}
+              li D0: #{output.D0}
+              li Sinh 16 khối Cn và Dn 
+                ul 
+                  each C,index in output.C
+                    li C#{index+1}: #{C}
+                    li D#{index+1}: #{output.D[index]}
+              li Sinh 16 khóa K từ các cặp Cn và Dn;
+                ul 
+                  each K,index in output.listK
+                    li K#{index+1}: #{K}
+              li IP: #{output.IP}
+              li R16L16: #{output.RL}
+                ul
+                  li L0: #{output.L0}
+                  li R0: #{output.R0}
+                  each L,index in output.listL
+                    li L#{index+1}: #{L}
+                    li R#{index+1}: #{output.listR[index]}
+              li IP-1: #{output.IP_1}
+              li C = #{output.result}
+    div#result
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")
+    script(src="/main.js")

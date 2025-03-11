@@ -12,8 +12,8 @@ html
       h1 Thuật Toán Mã Hóa Des
       .form-container
         form(action="/" method="POST")
-            input(type="text", name="M", placeholder="Nhập thông điệp M(Thập lục phân)", value=output ? output.M_data : "", required)
-            input(type="text", name="K", placeholder="Nhập khóa K(Thập lục phân)",value=output ? output.K_data : "", required)
+            input(type="text", name="M", placeholder="Nhập thông điệp M(16 kí tự thập lục phân)", value=output ? output.M_data : "", required)
+            input(type="text", name="K", placeholder="Nhập khóa K(16 kí tự thập lục phân)",value=output ? output.K_data : "", required)
             button(type="submit") Mã hóa
      
       if output

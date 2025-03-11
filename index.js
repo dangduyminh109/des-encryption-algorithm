@@ -23,7 +23,12 @@ app.post("/", (req, res) => {
     let output = {};
     output.M_data = req.body.M;
     output.K_data = req.body.K;
-    if (isHexWithoutSpaces(M) && isHexWithoutSpaces(K)) {
+    if (
+        M.length == 16 &&
+        K.length == 16 &&
+        isHexWithoutSpaces(M) &&
+        isHexWithoutSpaces(K)
+    ) {
         output = { ...output, ...desHelper(M, K) };
     } else output.error = true;
     res.render("index", { title: "Thuật toán mã hóa Des", output });
